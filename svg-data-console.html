@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<style> .chart rect { fill: steelblue } </style>
+
+<html><body>
+<p>Here are the magic numbers from Lost: <span id="data"></span></p>
+
+
+    <svg id="viz" width="720" height="405"></svg>
+
+
+<script>
+
+
+  
+var data = [10,5,5,8,9,3,20]; 
+var arcG = d3.select("svg");   
+arcG.selectAll("svg").data(data)
+	.enter().append("rect")
+	.style("fill","steelblue")
+    .attr("width",15)
+    .attr("height",function(d) { return 10*d; })
+    .attr("x",function(d,i) { return 20*i; })
+    .attr("tokenid",function(d,i) { return (d*i*64); });
+console.log(data[2]);
+ d3.csv("data.csv", function(data) {
+  console.log(data[0]);
+});
+		
+</script>
+
+</body></html>
