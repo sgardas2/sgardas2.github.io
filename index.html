@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<html>
+
+<body>
+
+    <div id="decoy-svg-container">
+    <svg id="decoy_viz" width="0" height="0"></svg>
+    </div>
+
+    <div id="svg-container">
+    <svg id="viz" width="720" height="405"></svg>
+    </div>
+
+<script>
+
+    var width = 720;
+    var height = 405;
+
+</script>
+
+<script>
+var data = 
+[
+    {
+        "x": 30,
+        "y": 40,
+        "r": 3
+    },
+    {
+        "x": 150,
+        "y": 80,
+        "r": 2
+    },
+    {
+        "x": -180,
+        "y": -50,
+        "r": 5
+    },
+    {
+        "x": 100,
+        "y": -120,
+        "r": 10
+    },
+    {
+        "x": -10,
+        "y": 20,
+        "r": 18
+    }
+]; 
+var svgContainer = d3.select("#viz")
+
+var circles = svgContainer.selectAll("circle")
+                          .data(data)
+                          .enter()
+                          .append("circle");
+
+var circleAttributes = circles
+                       .attr("cx", function (d) { return (width/2)+d.x; })
+                       .attr("cy", function (d) { return (height/2)+d.y; })
+                       .attr("r", function (d) { return d.r/2; })
+                       .style("fill", "green");
+					
+					circleAttributes.exit().remove();
+		
+</script>
+
+</body></html>
