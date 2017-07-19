@@ -39,13 +39,13 @@ path {
 <body>
 
 <!-- load the d3.js library -->    
-<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 
 <script>
 
 // Set the dimensions of the canvas / graph
 var margin = {top: 30, right: 20, bottom: 40, left: 50},
-    width = 600 - margin.left - margin.right,
+    width = 800 - margin.left - margin.right,
     height = 270 - margin.top - margin.bottom;
 
 	
@@ -128,7 +128,32 @@ d3.tsv("data/LoanByGrade.tsv", function(error, data) {
 	 .on("mousemove", function() {
     var xPosition = d3.mouse(this)[0] - 15;
     var yPosition = d3.mouse(this)[1] - 25;
-	var xkey=xPosition+'Grade '+d.key + " Avg Int Rate "+ d.values[i].AverageInterestRate + " ";
+	if (xPosition < width/10) {
+    i=0;
+}else if (xPosition < width/9) {
+   i=1;
+} 
+else if (xPosition < width/8) {
+   i=2;
+} else if (xPosition < width/7) {
+   i=3;
+} else if (xPosition < width/6) {
+   i=4;
+} else if (xPosition < width/5) {
+   i=5;
+} else if (xPosition < width/4) {
+   i=6;
+} else if (xPosition < width/3) {
+   i=7;
+} else if (xPosition < width/2) {
+   i=8;
+} 
+else if (xPosition < width/1) {
+   i=9;
+} 
+
+	
+	var xkey='Grade '+d.key + " Avg Int Rate "+ d.values[i].AverageInterestRate + " ";
     tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
     tooltip.select("text").text(xkey);
 	  });
