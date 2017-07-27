@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+
+</style>
+<style>
+
+.p
+{
+  font: 20px sans-serif;
+}
+
+
+
+
+.bar {
+  fill: #00e68a;
+}
+
+.bar:hover {
+  fill: orangered ;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+</style>
+<style> /* set the CSS */
+
+body { font: 12px Arial;}
+
+p {
+    padding-right: 30px;
+   
+    padding-left: 30px;
+}
+
+path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: #F1F3F3;
+  stroke: #6F257F;
+  stroke-width: 5px;
+}
+  
+.hover-line {
+  stroke: #6F257F;
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+}
+
+</style>
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="location.href='HomePage.html' ;"> Home</button>
+  <button class="tablinks" onclick="location.href='InterestRateByGrade.html' ;"> InterestRate By Grade </button>
+  <button class="tablinks" onclick="location.href='AnalysisByLoanYear.html' ;"> Analysis By Loan Year</button>
+  <button class="tablinks" onclick="location.href='LoanAmountByGrade.html' ;"> Loan Amounts By Grade</button>
+</div>
+<p>
+The Average Interest rate of Grade is used to calculate the Monthly Payments for a Loan of $10000 from 60months and 36 months Term of Loan. 
+The Mouse over tool tips reveal the exact Monthly payment amount.
+On X-axis is the Grade(A to G) and Term of the Loan(36 or 60) on Y-axis.
+</p>
+<div id=chart align=center>
+<p ><h4><b> Monthly Payments for a loan of $10000</b></h4></p>
+<svg id="MonthlyPayment"> </svg>
+<p>
+The Average Interest rate of Grade varies from the inception of Lending Club in 2007 to 2016. Loans in Grade G which are at high risk have the highest Interest
+while Grade A loan has the lowest.
+</p>
+
+<p align=center> <h4><b>Average Interest Rate by Grade</b></h4></p>
+<svg id="AvgInterestRate"> </svg>
+</div>
+
+<footer>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'AboutTheVisualization')"><b>AboutTheVisualization</b></</button>
+ 
+</div>
+
+<div id="AboutTheVisualization" class="tabcontent">
+<div>
+<p align=left>
+The visualization project is following the Interactive slideshow narrative visualization structure.
+This slide  has two charts
+<b>First</b> the bar chart with Monthly Payment for a loan of 10000$ with Grade.
+<b>The Second </b>Chart presents Interest rate variation by Grade over time. 
+<p>
+<b>User Interface Events</b>
+The navigation buttons at the top will help user navigate between pages.
+User interacts by clicking on the button or menu items to navigate to various part of this visualzation story. 
+The hover event allows proper positioning of the tooltip.
+</p>
+<p>
+<b>Annotations</b>
+The annotation is represented by the legend on the Bottom-right of the chart and a tooltip when mouse is hovered over the bars in the chart. 
+The legend and labels along the X and Y axis provides additional annotations for the chart.
+</p>
+<p>
+<b>Triggers</b>
+The mouse click event acts as a trigger to faciliate navigation in this visualization presentation. 
+The mouse hover (mouseover) event is a trigger for the tooltip in the bar chart. 
+The mouse over event triggers the ToopTip to showup on the top of the Bar.</p>
+<p>
+<b>Parameters</b>
+This section is hyper linked all the pages of the Narrative Visualization via Menu Buttons on the top. 
+The name of the target section is passed as an input paramter to the buttons and navgiation bar items. 
+The chart uses the D3 Library. 
+The data for the chart is passed from a TSV file which is stored in the data folder, which is then read by D3 for rendering axis,bars and tooltips for the chart. 
+The DropDown list is populated from Year field of the chart, the data is then filtered according to this selection.
+</p>
+<p>
+<b>Data Preparation:</b> 
+Lending club data was downloaded from here <a href= "https://www.lendingclub.com/info/download-data.action"> Download Lending Club Data </a>, from inception of Lending club in 2007 to 2017Q1 in the format of CSV files. 
+Data was cleaned by removing the headers and footers from all the 9 files using PySpark  and created a clean file with first row as the header and all the remaining 1 million rows as the values. Data will null values and data for year 2017 was filtered to give a better perspective for the data. 
+Then the TSV file was created by SparkDataFrame
+</p>
+</div>
+</div>
+
+
+   <p><a href= "https://www.linkedin.com/in/sravan-kumar-gardas/">Author Sravan Gardas <a></p>
+  <p> CS498 Data Visualization UIUC</p>
+</footer>
+</body>
+
+<!-- load the d3.js library -->    
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
+<script>
+
+// Set the dimensions of the canvas / graph
+var margin = {top: 30, right: 160, bottom: 80, left: 50},
+    width = 960- margin.left - margin.right,
+    height = 270 - margin.top - margin.bottom;
+
+	
+// Parse the date / time
+var parseDate = d3.time.format("%Y").parse;
+
+// Set the ranges
+var x = d3.scale.linear().range([0, width]); 
+var y = d3.scale.linear().range([height, 0]);
+
+// Define the axes
+var xAxis = d3.svg.axis().scale(x)
+    .orient("bottom").ticks(10);
+
+var yAxis = d3.svg.axis().scale(y)
+    .orient("left").ticks(5);
+
+// Define the line
+var priceline = d3.svg.line()	
+    .x(function(d) { return x(d.YearOfIssue); })
+    .y(function(d) { return y(d.AverageInterestRate); });
+	
+	var axx=function(d){return d.AverageInterestRate;};
+    
+// Adds the svg canvas
+var svg = d3.select("#AvgInterestRate")
+         .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform", 
+              "translate(" + margin.left + "," + margin.top + ")");
+			  
+var tooltip = svg.append("g")
+  .attr("class", "tooltip")
+  .style("display", "none");
+    
+tooltip.append("rect")
+  .attr("width", 30)
+  .attr("height", 20)
+  .attr("fill", "white")
+  .style("opacity", 0.5);
+
+tooltip.append("text")
+  .attr("x", 15)
+  .attr("dy", "1.2em")
+  .style("text-anchor", "middle")
+  .attr("font-size", "12px")
+  .attr("font-weight", "bold");
+
+// Get the data
+d3.tsv("data/LoanByGrade.tsv", function(error, data) {
+    data.forEach(function(d) {
+  d.YearOfIssue = (d.YearOfIssue);
+  d.AverageInterestRate = (+d.AverageInterestRate);
+   //d.AverageInterestRate=d.AverageInterestRate.toFixed(2);
+    });
+
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.YearOfIssue; }));
+    y.domain([0, d3.max(data, function(d) { return d.AverageInterestRate; })]);
+
+    // Nest the entries by symbol
+    var dataNest = d3.nest()
+        .key(function(d) {return d.Grade;})
+        .entries(data);
+    var colors_2 = ["#b07aa1","#59a14f","#4e79a7","#76b7b2","#e15759","#f28e2b","#edc948"]
+    var color = d3.scale.category10();  // set the colour scale
+	var color_1=[]
+    // Loop through each symbol / key
+	var i =-1
+    dataNest.forEach(function(d) {
+         i=i+1
+        svg.append("path")
+            .attr("class", "line")
+            .style("stroke", function() { // Add dynamically
+			   d.color = color(d.key);
+			    color_1=color_1.concat(d.color);	
+				//alert(color_1);
+                return colors_2[i] ;
+                  			})
+            .attr("d", priceline(d.values))
+		.on("mouseover", function() { tooltip.style("display", null); })
+     .on("mouseout", function() { tooltip.style("display", "none"); })
+	 .on("mousemove", function() {
+    var xPosition = d3.mouse(this)[0] - 15;
+    var yPosition = d3.mouse(this)[1] - 25;
+	if (xPosition < width/10) {
+    i=0;
+}else if (xPosition < width/9) {
+   i=1;
+} 
+else if (xPosition < width/8) {
+   i=2;
+} else if (xPosition < width/7) {
+   i=3;
+} else if (xPosition < width/6) {
+   i=4;
+} else if (xPosition < width/5) {
+   i=5;
+} else if (xPosition < width/4) {
+   i=6;
+} else if (xPosition < width/3) {
+   i=7;
+} else if (xPosition < width/2) {
+   i=8;
+} 
+else if (xPosition < width/1) {
+   i=9;
+} 
+
+	
+	var xkey='Grade '+d.key + " Avg Int Rate "+ d.values[i].AverageInterestRate + " ";
+    tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+    tooltip.select("text").text(xkey);
+	  });
+
+			
+			;
+			
+
+    });
+
+    // Add the X Axis
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+	    .selectAll("text")
+    	.style("font-size", "11px")
+      	.style("text-anchor", "end")
+      	.attr("dx", "-.8em")
+      	.attr("dy", "-.15em")
+      	.attr("transform", "rotate(-65)" )
+		.text(function(d) {return ""+d});
+		
+
+    // Add the Y Axis
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+		
+		var colors = ["b33040", "#d25c4d", "#f2b447", "#d9d574"];
+		//alert(color_1.slice(0,7));
+		// Draw legend
+var legend = svg.selectAll(".legend")
+  .data(colors_2)
+  .enter().append("g")
+  .attr("class", "legend")
+  .attr("transform", function(d, i) { return "translate(30," + i * 19 + ")"; });
+ 
+legend.append("rect")
+  .attr("x", width )
+  .attr("width", 20)
+  .attr("height", 20)
+  .style("fill", function(d, i) {return colors_2[i];});
+ 
+legend.append("text")
+  .attr("x", width + 23)
+  .attr("y", 9)
+  .attr("dy", ".35em")
+  .style("text-anchor", "start")
+  .text(function(d, i) { 
+ // alert(i);
+  //alert(color_1);
+    switch (i) {
+      case 0: return "Grade G";
+      case 1: return "Grade F";
+      case 2: return "Grade E";
+      case 3: return "Grade D";
+	  case 4: return "Grade C";
+      case 5: return "Grade B";
+      case 6: return "Grade A";
+	  
+    }
+  });
+//axis label
+         svg.append("text")
+        .attr("transform", "translate(" + (width / 2)+ " ," + (height -20 + margin.bottom) + ")")
+        .style("text-anchor", "middle")
+		.style("font-weight","bold")
+        .text("Loan Year");
+	// y axis label	
+svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+		.style("font-weight","bold")
+        .text("Avg Interest Rate %");
+
+});
+
+</script>
+<script>
+
+var formatPercent = d3.format(".0");
+
+var x_m = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var y_m = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis_m = d3.svg.axis()
+    .scale(x_m)
+    .orient("bottom");
+
+var yAxis_m = d3.svg.axis()
+    .scale(y_m)
+    .orient("left")
+    .tickFormat(formatPercent);
+
+var tip_m = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>Monthly_Payment:</strong> <span style='color:red'>" + d.Monthly_Payment+ "</span>";
+  })
+
+var svg_m = d3.select("#MonthlyPayment")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg_m.call(tip_m);
+
+d3.tsv("data/MonthlyInterestByGrade_Term.tsv", type, function(error, data) {
+  x_m.domain(data.map(function(d) { return d.Grade_Term; }));
+  y_m.domain([0, d3.max(data, function(d) { return d.Monthly_Payment; })]);
+
+  svg_m.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis_m)
+	  .selectAll("text")
+      .style("font-size", "10px")
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")//this is moving the axis lable
+      .attr("dy", "-.15em")//this is moving to after the tick
+      .attr("transform", "rotate(-45)" );
+
+	  
+
+  svg_m.append("g")
+      .attr("class", "y axis")
+      .call(yAxis_m)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      
+
+  svg_m.selectAll(".bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x_m(d.Grade_Term); })
+      .attr("width", x_m.rangeBand())
+      .attr("y", function(d) { return y_m(d.Monthly_Payment); })
+      .attr("height", function(d) { return height - y_m(d.Monthly_Payment); })
+	 // .attr("id",d.Grade_Term)
+      .on('mouseover', tip_m.show)
+      .on('mouseout', tip_m.hide);
+	  //.on('click',function(){ d3.select("svg").remove();});
+	  
+	  //axis label
+	   svg_m.append("text")
+        .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.bottom) + ")")
+        .style("text-anchor", "middle")
+		.style("font-weight","bold")
+        .text("Grade and Term of Loan");
+		
+	  //yxis label
+	  svg_m.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+		.style("font-weight","bold")
+        .text("Monthly Payment $");
+
+	
+
+});
+
+function type(d) {
+  d.Monthly_Payment = +d.Monthly_Payment;
+  return d;
+}
+
+</script>
+<script>
+function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
