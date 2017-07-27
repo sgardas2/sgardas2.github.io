@@ -123,19 +123,23 @@ function openCity(evt, cityName) {
 }
 </script>
 <body>
+
 <div class="tab" >
   <button class="tablinks" onclick="openCity(event, 'LendingClubAnalysis')">Home</button>
   <button class="tablinks" onclick="location.href='InterestRateByGrade.html' ;">InterestRate By Grade</button>
   <button class="tablinks" onclick="location.href='AnalysisByLoanYear.html' ;">Analysis By Loan Year</button>
   <button class="tablinks" onclick="location.href='LoanAmountByGrade.html' ;">Loan Amounts By Grade</button>
 </div>
-
+<div >
+<img src="images/Loanspic.jpg" alt="Loans By Lending Club" width=150 height=100 align="left">
+<img src="images/Loanspic.jpg" alt="Loans By Lending Club" width=150 height=100 align="right">
+</div>
 <div id="LendingClubAnalysis"  align="center">
  <h1><b><font>Lending Club Loan Analysis</font></b></h1>
-<img src="images/Loanspic.jpg" alt="Loans By Lending Club" width=150 height=100>
 </div>
+
 <div>
-<p class="p">
+<p>
 LendingClub is a US peer-to-peer lending company, headquartered in San Francisco, California.It was the first peer-to-peer lender to register its offerings as securities with the Securities and Exchange Commission (SEC), and to offer loan trading on a secondary market. 
 </p>
 <p>
@@ -146,6 +150,7 @@ Lending Club operates an online lending platform that enables borrowers to obtai
 
 </p>
 </div>
+
 <div id=chart align=center>
 <p><h4> Lending Club Loan data analysis by Year</h4></p>
 <svg id=LoanAmount></svg>
@@ -208,7 +213,7 @@ Then the TSV file was created by SparkDataFrame
 
 var margin = {top: 20, right: 20, bottom: 100, left: 90},
     width = 960 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    height = 400 - margin.top - margin.bottom;
 
 var formatPercent = d3.format("s");
 
