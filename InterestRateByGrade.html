@@ -135,11 +135,15 @@ path {
   <button class="tablinks" onclick="location.href='AnalysisByLoanYear.html' ;"> Analysis By Loan Year</button>
   <button class="tablinks" onclick="location.href='LoanAmountByGrade.html' ;"> Loan Amounts By Grade</button>
 </div>
+<div align=center>
 <p>
-The Average Interest rate of Grade is used to calculate the Monthly Payments for a Loan of $10000 from 60months and 36 months Term of Loan. 
+The Average Interest rate of Grade is used to calculate the Monthly Payments for a Loan of $10000 for  a Term of 60months and 36.
+</p> 
+<p>
 The Mouse over tool tips reveal the exact Monthly payment amount.
 On X-axis is the Grade(A to G) and Term of the Loan(36 or 60) on Y-axis.
 </p>
+</div>
 <div id=chart align=center>
 <p ><h4><b> Monthly Payments for a loan of $10000</b></h4></p>
 <svg id="MonthlyPayment"> </svg>
@@ -183,7 +187,7 @@ The mouse hover (mouseover) event is a trigger for the tooltip in the bar chart.
 The mouse over event triggers the ToopTip to showup on the top of the Bar.</p>
 <p>
 <b>Parameters</b>
-This section is hyper linked all the pages of the Narrative Visualization via Menu Buttons on the top. 
+This section is hyper linked to all the pages of the Narrative Visualization via Menu Buttons on the top. 
 The name of the target section is passed as an input paramter to the buttons and navgiation bar items. 
 The chart uses the D3 Library. 
 The data for the chart is passed from a TSV file which is stored in the data folder, which is then read by D3 for rendering axis,bars and tooltips for the chart. 
