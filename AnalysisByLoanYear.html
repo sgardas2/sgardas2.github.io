@@ -276,7 +276,7 @@ d3.tsv("data/LoanByYear.tsv", function(error, data){
 	// y axis label	
      svg.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 70 - margin.left)
+        .attr("y", 120 - (margin.left))
         .attr("x",0 - (height / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")
