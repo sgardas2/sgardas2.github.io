@@ -94,9 +94,9 @@ The Loan Amounts given by Lending Club vary from Grade to Grade. The stacked cha
  
 </div>
 
-<div id="AboutTheVisualization" class="tabcontent">
+<div id="AboutTheVisualization" class="tabcontent" style="text-align:justify">
 <div>
-<p align=left>
+<p>
 The visualization project is following the Interactive slideshow narrative visualization structure.
 This page represents the Analysis of Loan by Grade in stacked bar chart over time from inception to 2016.
 <p>
@@ -125,7 +125,7 @@ The data for the chart is passed from a JSON file, which is then read by D3 for 
 <p>
 <b>Data Preparation:</b> 
 Lending club data was downloaded from here <a href= "https://www.lendingclub.com/info/download-data.action"> Download Lending Club Data </a>, from inception of Lending club in 2007 to 2017Q1 in the format of CSV files. 
-Data was cleaned by removing the headers and footers from all the 9 files using PySpark  and created a clean file with first row as the header and all the remaining 1 million rows as the values. Data will null values and data for year 2017 was filtered to give a better perspective for the data. 
+Data was cleaned by removing the headers and footers from all the 9 files using PySpark  and created a clean file with first row as the header and all the remaining 1 million rows as the values. Data with null values and data for year 2017 was filtered to give a better perspective for the data. 
 Then the TSV file was created by SparkDataFrame
 </p>
 </div>
