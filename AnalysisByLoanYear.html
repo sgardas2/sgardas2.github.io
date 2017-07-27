@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<style>
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+
+</style>
+
+<style>
+p {
+    padding-right: 30px;
+   
+    padding-left: 30px;
+}
+
+.rectangle {
+	fill: #ff5050;
+}
+.rectangle:hover {
+	fill: orange;
+}
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+</style>
+</head>
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="location.href='HomePage.html' ;"> Home</button>
+  <button class="tablinks" onclick="location.href='InterestRateByGrade.html' ;"> InterestRate By Grade </button>
+  <button class="tablinks" onclick="location.href='AnalysisByLoanYear.html' ;"> Analysis By Loan Year</button>
+  <button class="tablinks" onclick="location.href='LoanAmountByGrade.html' ;"> Loan Amounts By Grade</button>
+</div>
+<div>
+<p> Lending club gives loans for a variety of Purposes, among all Debt Consolidation leads in the Dollar Amount. Please select the Year of loan to see the variations by Year and Purpose</p>
+</div>
+<div id="drop" align=center><b>Select A Loan Year</b>  </div>
+</div>
+<div id=chart align=center>
+<p> <h4>Loan Amount Analysis by Year and Purpose of Loan</h4></p>
+<svg></svg>
+</div>
+<footer>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'AboutTheVisualization')"><b>AboutTheVisualization</b></</button>
+ 
+</div>
+
+<div id="AboutTheVisualization" class="tabcontent">
+<div>
+<p align=left>
+The visualization project is following the Interactive slideshow narrative visualization structure.
+This slide represents the Analysis of Loan by Year and Purpose of Loan. 
+Users could trigger the Slide based on the selection of the year.
+<p>
+<b>User Interface Events</b>
+The navigation buttons at the top will help user navigate between pages.
+User interacts by clicking on the button or menu items to navigate to various part of this visualzation story. 
+The hover event allows proper positioning of the tooltip.
+</p>
+<p>
+<b>Annotations</b>
+The annotation is represented by the legend on the top-right of the chart and a tooltip when mouse is hovered over the bars in the chart. 
+The legend and labels along the X and Y axis provides additional annotations for the chart.
+</p>
+<p>
+<b>Triggers</b>
+The Loan Year selection acts as a trigger to generate the chart for every year.
+The mouse click event acts as a trigger to faciliate navigation in this visualization presentation. 
+The mouse hover (mouseover) event is a trigger for the tooltip in the bar chart. 
+The mouse over event triggers the ToopTip to showup on the top of the Bar.</p>
+</p>
+<p>
+<b>Parameters</b>
+This section is hyper linked all the pages of the Narrative Visualization via Menu Buttons on the top. 
+The name of the target section is passed as an input paramter to the buttons and navgiation bar items. 
+The chart uses the D3 Library. 
+The data for the chart is passed from a TSV file which is stored in the data folder, which is then read by D3 for rendering axis,bars and tooltips for the chart. 
+The DropDown list is populated from Year field of the chart, the data is then filtered according to this selection.
+</p>
+<p>
+<b>Data Preparation:</b> 
+Lending club data was downloaded from here <a href= "https://www.lendingclub.com/info/download-data.action"> Download Lending Club Data </a>, from inception of Lending club in 2007 to 2017Q1 in the format of CSV files. 
+Data was cleaned by removing the headers and footers from all the 9 files using PySpark  and created a clean file with first row as the header and all the remaining 1 million rows as the values. Data will null values and data for year 2017 was filtered to give a better perspective for the data. 
+Then the TSV file was created by SparkDataFrame
+</p>
+</div>
+</div>
+
+
+  <p><a href= "https://www.linkedin.com/in/sravan-kumar-gardas/">Author Sravan Gardas <a></p>
+  <p> CS498 Data Visualization UIUC</p>
+</footer>
+</body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script>
+
+var margin = {top: 10, right: 180, bottom: 150, left: 180},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var svg = d3.select("svg")
+	.attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+	.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	
+	  var tip = d3.tip()
+ .attr('class', 'd3-tip')
+.offset([-10, 0])
+.html(function(d) {
+return "<strong>LoanAmnt:</strong> <span style='color:red'>" +"0"+ "</span>";
+})
+
+
+var formatPercent = d3.format("s");
+	
+	svg.call(tip);
+
+d3.tsv("data/LoanByYear.tsv", function(error, data){
+
+	// filter year
+	var data = data.filter(function(d){return d.Year == '2012';});
+	// Get every column value
+	var elements = Object.keys(data[0])
+		.filter(function(d){
+			return ((d != "Year") & (d != "State"));
+		});
+	var selection = elements[0];
+
+	var y = d3.scale.linear()
+			.domain([0, d3.max(data, function(d){
+				return +d[selection];
+			})])
+			.range([height, 0]);
+
+	var x = d3.scale.ordinal()
+			.domain(data.map(function(d){ return d.State;}))
+			.rangeBands([0, width]);
+
+
+	var xAxis = d3.svg.axis()
+		.scale(x)
+	    .orient("bottom");
+
+	var yAxis = d3.svg.axis()
+		.scale(y)
+	    .orient("left")
+		.tickFormat (function (d) { return formatPercent(d).replace('G', 'B'); }); 
+ 		
+
+
+	svg.append("g")
+    	.attr("class", "x axis")
+    	.attr("transform", "translate(0," + height + ")")
+    	.call(xAxis)
+    	.selectAll("text")
+    	.style("font-size", "10px")
+      	.style("text-anchor", "end")
+      	.attr("dx", "-.8em")//this is moving the axis lable
+      	.attr("dy", "-.15em")//this is moving to after the tick
+      	.attr("transform", "rotate(-50)" );
+
+
+ 	svg.append("g")
+    	.attr("class", "y axis")
+    	.call(yAxis);
+
+	svg.selectAll("rectangle")
+		.data(data)
+		.enter()
+		.append("rect")
+		.attr("class","rectangle")
+		.attr("width", width/data.length)
+		.attr("height", function(d){
+			return height - y(+d[selection]);
+		})
+		.attr("x", function(d, i){
+			return (width / data.length) * i ;
+		})
+		.attr("y", function(d){
+			return y(+d[selection]);
+		})
+		.append("title")
+		.text(function(d){
+			return d.State + " : $" + d[selection];
+		});
+	 
+	 
+		//axis label
+    svg.append("text")
+        .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.bottom-30) + ")")
+		.attr("dx", "-.55em")
+        .style("text-anchor", "middle")
+		.attr("font-weight", "bold")
+		.style("font-size", "12px")
+        .text("Purpose Of Loan");
+	// y axis label	
+     svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 70 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+		.attr("font-weight", "bold")
+		.style("font-size", "12px")
+        .text("Loan Amount $"); 
+
+	var selector = d3.select("#drop")
+    	.append("select")
+    	.attr("id","dropdown")
+    	.on("change", function(d){
+        	selection = document.getElementById("dropdown");
+
+        	y.domain([0, d3.max(data, function(d){
+				return +d[selection.value];})]);
+
+        	yAxis.scale(y);
+
+        	d3.selectAll(".rectangle")
+           		.transition()
+	            .attr("height", function(d){
+					return height - y(+d[selection.value]);
+				})
+				.attr("x", function(d, i){
+					return (width / data.length) * i ;
+				})
+				.attr("y", function(d){
+					return y(+d[selection.value]);
+				})
+				//.on('mouseover', tip.show)
+                //.on('mouseout', tip.hide)
+		   		.ease("linear")
+           		.select("title")
+           		.text(function(d){
+           			return d.State + " : $" + d[selection.value];
+           		}) ;
+			
+		
+           	d3.selectAll("g.y.axis")
+           		.transition()
+           		.call(yAxis);
+
+         });
+
+    selector.selectAll("option")
+      .data(elements)
+      .enter().append("option")
+      .attr("value", function(d){
+        return d;
+      })
+      .text(function(d){
+        return d;
+      })
+
+
+});
+
+</script>
+<script>
+function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
