@@ -50,11 +50,11 @@ div.tab button.active {
 
 
 .bar {
-  fill: #00e68a;
+  fill: #008856;
 }
 
 .bar:hover {
-  fill: #3d3d5c ;
+  fill: #cf4b35 ;
 }
 
 .d3-tip {
@@ -402,7 +402,7 @@ legend.append("text")
 	// y axis label	
 svg.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left)
+        .attr("y", 15 - margin.left)
         .attr("x",0 - (height / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")
@@ -415,10 +415,14 @@ svg.append("text")
 </script>
 <script>
 
+var margin_m = {top: 30, right: 40, bottom: 80, left: 70},
+    width_m = 960- margin_m.left - margin_m.right,
+    height_m = 270 - margin_m.top - margin_m.bottom;
+
 var formatPercent = d3.format(".0");
 
 var x_m = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+    .rangeRoundBands([0, width_m], .1);
 
 var y_m = d3.scale.linear()
     .range([height, 0]);
@@ -436,14 +440,14 @@ var tip_m = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>Monthly_Payment:</strong> <span style='color:red'>" + d.Monthly_Payment+ "</span>";
+    return "<strong>Monthly_Payment:</strong> <span style='color:#cf4b35'>" + d.Monthly_Payment+ "</span>";
   })
 
 var svg_m = d3.select("#MonthlyPayment")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", width_m + margin_m.left + margin_m.right)
+    .attr("height", height_m + margin_m.top + margin_m.bottom)
   .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin_m.left + "," + margin_m.top + ")");
 
 svg_m.call(tip_m);
 
