@@ -62,7 +62,7 @@ p {
 }
 
 .bar:hover {
-  fill: #800000 ;
+  fill: #cf4b35;
 }
 
 .x.axis path {
@@ -251,7 +251,7 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>Loan Amount$:</strong> <span style='color:red'>" +d.LoanAmnt + "</span>";
+    return "<strong>Loan Amount$:</strong> <span style='color:#cf4b35'>" +d.LoanAmnt + "</span>";
   })
 
 var svg = d3.select("#LoanAmount")
