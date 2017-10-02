@@ -1,0 +1,396 @@
+<!DOCTYPE brockercheckreport[
+<!ELEMENT brockercheckreport (COMPANY+)>
+<!ELEMENT COMPANY (FirmProfile,FirmHistory,FirmOperations)>
+<!ELEMENT FirmProfile (notes,FirmName,MainOfficeLocation,RegulatedBy,MailingAddress,BusinessTelephoneNumber,DirectOwnersAndExecutiveOfficers+,IndirectOwners*)>
+<!ELEMENT notes (#PCDATA)>
+<!ELEMENT FirmName (#PCDATA)>
+<!ELEMENT MainOfficeLocation (#PCDATA)>
+<!ELEMENT RegulatedBy (#PCDATA)>
+<!ELEMENT MailingAddress (#PCDATA)>
+<!ELEMENT BusinessTelephoneNumber (#PCDATA)>
+<!ELEMENT DirectOwnersAndExecutiveOfficers (LegalNameAndCRD,OwnerType,Position,PositionStartDate,PercentageofOwnership,DirectsPolicies,PublicCompany)>
+<!ELEMENT LegalNameAndCRD (#PCDATA)>
+<!ELEMENT OwnerType (#PCDATA)>
+<!ELEMENT Position (#PCDATA)>
+<!ELEMENT PositionStartDate (#PCDATA)>
+<!ELEMENT PercentageofOwnership (#PCDATA)>
+<!ELEMENT DirectsPolicies (#PCDATA)>
+<!ELEMENT PublicCompany (#PCDATA)>
+<!ELEMENT IndirectOwners (#PCDATA)>
+<!ELEMENT FirmHistory (#PCDATA)>
+<!ELEMENT FirmOperations (Registrations,TypesofBusiness,ClearingArrangements,IntroducingArrangements,IndustryArrangements,OrganizationAffiliates)>
+<!ELEMENT Registrations (Notes,FederalRegulator,SECRegistrationQuestions,Self-RegulatoryOrganization,U.S.StatesandTerritories)>
+<!ELEMENT Notes (#PCDATA)>
+<!ELEMENT FederalRegulator EMPTY>
+<!ELEMENT SECRegistrationQuestions ( broker-dealer,GovernmentSecuritiesBroker,OnlyGovernmentSecuritiesBroker,CeasedGovernamentSecurityActivties)>
+<!ELEMENT broker-dealer (#PCDATA)>
+<!ELEMENT GovernmentSecuritiesBroker (#PCDATA)>
+<!ELEMENT OnlyGovernmentSecuritiesBroker (#PCDATA)>
+<!ELEMENT CeasedGovernamentSecurityActivties (#PCDATA)>
+<!ELEMENT Self-RegulatoryOrganization EMPTY >
+<!ELEMENT U.S.StatesandTerritories (state+)>
+<!ELEMENT state EMPTY>
+<!ATTLIST state Name  CDATA #IMPLIED>
+<!ATTLIST state Status CDATA #IMPLIED>
+<!ATTLIST state DateEffective  CDATA #IMPLIED>
+<!ELEMENT TypesofBusiness (TBNotes,TypeofBusiness+)>
+<!ELEMENT TBNotes (#PCDATA)>
+<!ELEMENT TypeofBusiness (#PCDATA)>
+<!ELEMENT ClearingArrangements (CANotes)>
+<!ELEMENT CANotes (#PCDATA)>
+<!ELEMENT IntroducingArrangements (IANotes,Name,BusinessAddress,CRD,EffectiveDate,Description)>
+<!ELEMENT IANotes (#PCDATA)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT BusinessAddress (#PCDATA)>
+<!ELEMENT CRD (#PCDATA)>
+<!ELEMENT EffectiveDate (#PCDATA)>
+<!ELEMENT Description (#PCDATA)>
+<!ELEMENT IndustryArrangements (INANotes)>
+<!ELEMENT INANotes (#PCDATA)>
+<!ELEMENT OrganizationAffiliates (OANotes,Firm+,AdditionalNotes)>
+<!ELEMENT OANotes (#PCDATA)>
+<!ELEMENT Firm (Control,FirmAddress,Country,FirmDescription)>
+<!ELEMENT Control (#PCDATA)>
+<!ELEMENT FirmAddress (#PCDATA)>
+<!ELEMENT Country (#PCDATA)>
+<!ELEMENT FirmDescription (#PCDATA)>
+<!ELEMENT  AdditionalNotes (#PCDATA)>
+<!ATTLIST COMPANY  CRD CDATA #REQUIRED>
+<!ATTLIST COMPANY  NAME CDATA #REQUIRED>
+<!ATTLIST FirmName  CRD CDATA #REQUIRED>
+<!ATTLIST FirmName  SEC CDATA #REQUIRED>
+<!ATTLIST Self-RegulatoryOrganization Name  CDATA #IMPLIED>
+<!ATTLIST Self-RegulatoryOrganization Status CDATA #IMPLIED>
+<!ATTLIST Self-RegulatoryOrganization DateEffective  CDATA #IMPLIED>
+<!ATTLIST FederalRegulator Name  CDATA #IMPLIED>
+<!ATTLIST FederalRegulator Status CDATA #IMPLIED>
+<!ATTLIST FederalRegulator DateEffective  CDATA #IMPLIED>
+<!ATTLIST DirectOwnersAndExecutiveOfficers OwnerType (domestic|Foreignentity|Anindividual) "domestic">
+<!ATTLIST DirectOwnersAndExecutiveOfficers DirectsPolicies (Yes|No) "No">
+<!ATTLIST DirectOwnersAndExecutiveOfficers PublicCompany (Yes|No) "No">
+<!ATTLIST SECRegistrationQuestion GovernmentSecuritiesBroker (Yes|No) "No">
+<!ATTLIST SECRegistrationQuestion OnlyGovernmentSecuritiesBroker (Yes|No) "No">
+<!ATTLIST SECRegistrationQuestion CeasedGovernamentSecurityActivties (Yes|No) "No">
+<!ATTLIST Firm ForeignEntity (Yes|No) "No">
+<!ATTLIST Firm SecuritiesActivities (Yes|No) "No">
+<!ATTLIST Firm InvestmentAdvisoryActivities (Yes|No) "No">
+<!ATTLIST Firm Name CDATA #IMPLIED>
+<!ATTLIST Firm EffectiveDate CDATA #IMPLIED>
+
+]>
+<brockercheckreport>
+<COMPANY CRD ="42578" NAME="LIEBLONG ASSOCIATES, INC">
+<FirmProfile>
+<notes>
+This firm is classified as a corporation.
+This firm was formed in Arkansas on 04/01/1996.
+</notes>
+<FirmName CRD="42578" SEC="8-49880" >
+LIEBLONG ASSOCIATES, INC.
+</FirmName>
+<MainOfficeLocation>
+10809 EXECUTIVE CENTER DRIVE
+SUITE 117
+LITTLE ROCK, AR  72211
+</MainOfficeLocation>
+<RegulatedBy>
+FINRA New Orleans Office
+</RegulatedBy>
+<MailingAddress>
+P.O. BOX 24520
+LITTLE ROCK, AR  72221
+</MailingAddress>
+<BusinessTelephoneNumber>
+501-219-2003
+</BusinessTelephoneNumber>
+<DirectOwnersAndExecutiveOfficers>
+<LegalNameAndCRD>
+LIEBLONG, ALEX RAY 
+839906
+</LegalNameAndCRD>
+<OwnerType>
+Individual
+</OwnerType>
+<Position>
+MANAGING MEMBER, KEY COLONY MANAGEMENT, LLC ("RELYING
+ADVISER")
+</Position>
+<PositionStartDate>
+01/1999
+</PositionStartDate>
+<PercentageofOwnership>
+75% or more
+</PercentageofOwnership>
+<DirectsPolicies>
+Yes
+</DirectsPolicies>
+<PublicCompany>
+No
+</PublicCompany>
+</DirectOwnersAndExecutiveOfficers>
+<DirectOwnersAndExecutiveOfficers>
+<LegalNameAndCRD>
+LEHMAN, RALPH CLAYTON II
+1333730
+</LegalNameAndCRD>
+<OwnerType>
+Individual
+</OwnerType>
+<Position>
+OPTIONS PRINCIPAL, LIEBLONG ASSOCIATES, INC.
+</Position>
+<PositionStartDate>
+04/2009
+</PositionStartDate>
+<PercentageofOwnership>
+Less than 5%
+</PercentageofOwnership>
+<DirectsPolicies>
+No
+</DirectsPolicies>
+<PublicCompany>
+No
+</PublicCompany>
+</DirectOwnersAndExecutiveOfficers>
+
+<DirectOwnersAndExecutiveOfficers>
+<LegalNameAndCRD>
+LIEBLONG, JASON RAY 
+2366644
+</LegalNameAndCRD>
+<OwnerType>
+Individual
+</OwnerType>
+<Position>
+VICE PRESIDENT, LIEBLONG  ASSOCIATES, INC.
+</Position>
+<PositionStartDate>
+01/1998
+</PositionStartDate>
+<PercentageofOwnership>
+Less than 5%
+</PercentageofOwnership>
+<DirectsPolicies>
+No
+</DirectsPolicies>
+<PublicCompany>
+No
+</PublicCompany>
+</DirectOwnersAndExecutiveOfficers>
+
+<DirectOwnersAndExecutiveOfficers>
+<LegalNameAndCRD>
+SPANN, PAUL ALLISON
+722781
+</LegalNameAndCRD>
+<OwnerType>
+Individual
+</OwnerType>
+<Position>
+SR. VICE PRESIDENT/MUNI PRINCIPAL, LIEBLONG  ASSOCIATES, INC
+</Position>
+<PositionStartDate>
+06/1997
+</PositionStartDate>
+<PercentageofOwnership>
+Less than 5%
+</PercentageofOwnership>
+<DirectsPolicies>
+No
+</DirectsPolicies>
+<PublicCompany>
+No
+</PublicCompany>
+</DirectOwnersAndExecutiveOfficers>
+
+<DirectOwnersAndExecutiveOfficers>
+<LegalNameAndCRD>
+WILLIAMS, MARY ELLEN
+4529272
+</LegalNameAndCRD>
+<OwnerType>
+Individual
+</OwnerType>
+<Position>
+VP/CFO/FINOP/SEC/TREAS/CCO, LIEBLONG  ASSOCIATES, INC.
+</Position>
+<PositionStartDate>
+05/2003
+</PositionStartDate>
+<PercentageofOwnership>
+Less than 5%
+</PercentageofOwnership>
+<DirectsPolicies>
+No
+</DirectsPolicies>
+<PublicCompany>
+No
+</PublicCompany>
+</DirectOwnersAndExecutiveOfficers>
+<IndirectOwners>
+No information reported.
+</IndirectOwners>
+
+</FirmProfile>
+<FirmHistory>
+No information reported
+</FirmHistory>
+
+<FirmOperations>
+<Registrations>
+<Notes>
+This section provides information about the regulators (Securities and Exchange Commission (SEC), self-regulatory
+organizations (SROs), and U.S. states and territories) with which the brokerage firm is currently registered and
+licensed, the date the license became effective, and certain information about the firm's SEC registration.
+This firm is currently registered with the SEC, 1 SRO and 26 U.S. states and territories
+</Notes>
+<FederalRegulator Name="" Status="Approved" DateEffective="06/16/1997"/>
+<SECRegistrationQuestions>
+<broker-dealer>
+Yes
+</broker-dealer>
+<GovernmentSecuritiesBroker>
+Yes
+</GovernmentSecuritiesBroker>
+<OnlyGovernmentSecuritiesBroker>
+No
+</OnlyGovernmentSecuritiesBroker>
+<CeasedGovernamentSecurityActivties>
+No
+</CeasedGovernamentSecurityActivties>
+</SECRegistrationQuestions>
+
+<Self-RegulatoryOrganization Name="FINRA" Status="Approved" DateEffective="06/16/1997" />
+<U.S.StatesandTerritories>
+<state Name="Arizona" Status="Approved" DateEffective="06/20/1997"/>
+<state Name="California" Status="Approved" DateEffective="06/20/1997"/>
+<state Name="Colorado" Status="Approved" DateEffective="06/20/1997"/>
+<state Name="Florida" Status="Approved" DateEffective="06/20/1997"/>
+<state Name="Georgia" Status="Approved" DateEffective="06/20/1997"/>
+<state Name="Indiana" Status="Approved" DateEffective="06/20/1997"/>
+<state Name="Iowa" Status="Approved" DateEffective="06/20/1997"/>
+<state Name="Kansas" Status="Approved" DateEffective="06/20/1997"/>
+</U.S.StatesandTerritories>
+
+</Registrations>
+<TypesofBusiness>
+<TBNotes>
+This section provides the types of business, including non-securities business, the brokerage firm is engaged in or
+expects to be engaged in.
+This firm currently conducts 12 types of businesses.
+</TBNotes>
+<TypeofBusiness>
+Broker or dealer retailing corporate equity securities over-the-counter
+</TypeofBusiness>
+<TypeofBusiness>
+Broker or dealer selling corporate debt securities
+</TypeofBusiness>
+<TypeofBusiness>
+Mutual fund retailer
+</TypeofBusiness>
+<TypeofBusiness>
+U S. government securities broker
+</TypeofBusiness>
+<TypeofBusiness>
+Municipal securities broker
+</TypeofBusiness>
+<TypeofBusiness>
+Broker or dealer selling variable life insurance or annuities
+</TypeofBusiness>
+<TypeofBusiness>
+Put and call broker or dealer or option writer
+</TypeofBusiness>
+<TypeofBusiness>
+Investment advisory services
+</TypeofBusiness>
+<TypeofBusiness>
+Broker or dealer selling tax shelters or limited partnerships in primary distributions
+</TypeofBusiness>
+<TypeofBusiness>
+Non-exchange member arranging for transactions in listed securities by exchange member
+</TypeofBusiness>
+<TypeofBusiness>
+Trading securities for own account
+</TypeofBusiness>
+</TypesofBusiness>
+<ClearingArrangements>
+<CANotes>
+This firm does not hold or maintain funds or securities or provide clearing services for other broker-dealer(s).
+</CANotes>
+</ClearingArrangements>
+<IntroducingArrangements>
+<IANotes>
+This firm does refer or introduce customers to other brokers and dealers.
+</IANotes>
+<Name>
+WELLS FARGO CLEARING SERVICES, LLC
+</Name>
+<BusinessAddress>
+ONE NORTH JEFFERSON
+ST. LOUIS, MO  63103
+</BusinessAddress>
+<CRD>
+19616
+</CRD>
+<EffectiveDate>
+01/26/2017
+</EffectiveDate>
+<Description>
+LIEBLONG AND ASSOCIATES, INC. INTRODUCES CUSTOMERS AND
+ACCOUNTS ON A FULLY DISCLOSED BASIS TO THE ABOVE ENTITY.  THE
+CHANGE OF CLEARING FIRM NAME IS DUE TO A COMBINATION OF
+FIRST CLEARING, LLC AND WELLS FARGO ADVISORS, LLC.  THEY
+CONTINUE TO OPERATE UNDER THE TRADE NAME "FIRST CLEARING".
+THE COMBINATION OF FIRMS WAS TO SIMPLIFY THEIR INTERNAL
+LEGAL STRUCTURE AND HAD NO CLIENT OR FIRM IMPACT
+</Description>
+</IntroducingArrangements>
+<IndustryArrangements>
+<INANotes>
+This firm does not have books or records maintained by a third party.
+This firm does not have accounts, funds, or securities maintained by a third party.
+This firm does not have customer accounts, funds, or securities maintained by a third party.
+This firm does not have individuals who control its management or policies through agreement.
+This firm does not have individuals who wholly or partly finance the firm's business.
+</INANotes>
+</IndustryArrangements>
+<OrganizationAffiliates>
+<OANotes>
+This section provides information on control relationships the firm has with other firms in the securities, investment
+advisory, or banking business.
+This firm is, directly or indirectly:in control of or controlled by or under common control with the following partnerships, corporations, or other organizations engaged in the securities or investment
+advisory business.
+</OANotes>
+<Firm Name="KEY COLONY MANAGEMENT, LLC" EffectiveDate="01/01/1999">
+<Control>
+is under common control with the firm
+</Control>
+<FirmAddress>
+10825 FINANCIAL CENTRE PARKWAY
+SUITE 100
+LITTLE ROCK, AZ  72211
+</FirmAddress>
+<Country>
+</Country>
+<FirmDescription>
+KEY COLONY MANAGEMENT, LLC is under common control with the firm.
+ALEX R. LIEBLONG OWNS AND CONTROLS EACH OF LIEBLONG 
+ASSOCIATES, INC. AND KEY COLONY MANAGEMENT, LLC.
+</FirmDescription>
+</Firm>
+<AdditionalNotes>
+This firm is not directly or indirectly, controlled by the following
+bank holding company
+national bank
+state member bank of the Federal Reserve System
+state non-member bank
+savings bank or association
+credit union
+or foreign bank
+</AdditionalNotes>
+</OrganizationAffiliates>
+
+</FirmOperations>
+</COMPANY>
+</brockercheckreport>
+
