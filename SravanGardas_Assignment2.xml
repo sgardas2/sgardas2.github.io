@@ -1,33 +1,43 @@
 <!DOCTYPE brockercheckreport[
 <!ELEMENT brockercheckreport (COMPANY+)>
 <!ELEMENT COMPANY (FirmProfile,FirmHistory,FirmOperations)>
+<!ATTLIST COMPANY  CRD CDATA #REQUIRED>
+<!ATTLIST COMPANY  NAME CDATA #REQUIRED>
 <!ELEMENT FirmProfile (notes,FirmName,MainOfficeLocation,RegulatedBy,MailingAddress,BusinessTelephoneNumber,DirectOwnersAndExecutiveOfficers+,IndirectOwners*)>
+<!ATTLIST FirmName  CRD CDATA #REQUIRED>
+<!ATTLIST FirmName  SEC CDATA #REQUIRED>
 <!ELEMENT notes (#PCDATA)>
 <!ELEMENT FirmName (#PCDATA)>
 <!ELEMENT MainOfficeLocation (#PCDATA)>
 <!ELEMENT RegulatedBy (#PCDATA)>
 <!ELEMENT MailingAddress (#PCDATA)>
 <!ELEMENT BusinessTelephoneNumber (#PCDATA)>
-<!ELEMENT DirectOwnersAndExecutiveOfficers (LegalNameAndCRD,OwnerType,Position,PositionStartDate,PercentageofOwnership,DirectsPolicies,PublicCompany)>
+<!ELEMENT DirectOwnersAndExecutiveOfficers (LegalNameAndCRD,Position,PositionStartDate,PercentageofOwnership)>
+<!ATTLIST DirectOwnersAndExecutiveOfficers OwnerType (Domestic|ForeignEntity|Individual) "Domestic">
+<!ATTLIST DirectOwnersAndExecutiveOfficers DirectsPolicies (Yes|No) "No">
+<!ATTLIST DirectOwnersAndExecutiveOfficers PublicCompany (Yes|No) "No">
 <!ELEMENT LegalNameAndCRD (#PCDATA)>
-<!ELEMENT OwnerType (#PCDATA)>
 <!ELEMENT Position (#PCDATA)>
 <!ELEMENT PositionStartDate (#PCDATA)>
 <!ELEMENT PercentageofOwnership (#PCDATA)>
-<!ELEMENT DirectsPolicies (#PCDATA)>
-<!ELEMENT PublicCompany (#PCDATA)>
 <!ELEMENT IndirectOwners (#PCDATA)>
 <!ELEMENT FirmHistory (#PCDATA)>
 <!ELEMENT FirmOperations (Registrations,TypesofBusiness,ClearingArrangements,IntroducingArrangements,IndustryArrangements,OrganizationAffiliates)>
 <!ELEMENT Registrations (Notes,FederalRegulator,SECRegistrationQuestions,Self-RegulatoryOrganization,U.S.StatesandTerritories)>
 <!ELEMENT Notes (#PCDATA)>
 <!ELEMENT FederalRegulator EMPTY>
-<!ELEMENT SECRegistrationQuestions ( broker-dealer,GovernmentSecuritiesBroker,OnlyGovernmentSecuritiesBroker,CeasedGovernamentSecurityActivties)>
-<!ELEMENT broker-dealer (#PCDATA)>
-<!ELEMENT GovernmentSecuritiesBroker (#PCDATA)>
-<!ELEMENT OnlyGovernmentSecuritiesBroker (#PCDATA)>
-<!ELEMENT CeasedGovernamentSecurityActivties (#PCDATA)>
+<!ATTLIST FederalRegulator Name  CDATA #IMPLIED>
+<!ATTLIST FederalRegulator Status CDATA #IMPLIED>
+<!ATTLIST FederalRegulator DateEffective  CDATA #IMPLIED>
+<!ELEMENT SECRegistrationQuestions EMPTY>
+<!ATTLIST SECRegistrationQuestions broker-dealer (Yes|No) "No">
+<!ATTLIST SECRegistrationQuestions GovernmentSecuritiesBroker (Yes|No) "No">
+<!ATTLIST SECRegistrationQuestions OnlyGovernmentSecuritiesBroker (Yes|No) "No">
+<!ATTLIST SECRegistrationQuestions CeasedGovernamentSecurityActivties (Yes|No) "No">
 <!ELEMENT Self-RegulatoryOrganization EMPTY >
+<!ATTLIST Self-RegulatoryOrganization Name  CDATA #IMPLIED>
+<!ATTLIST Self-RegulatoryOrganization Status CDATA #IMPLIED>
+<!ATTLIST Self-RegulatoryOrganization DateEffective  CDATA #IMPLIED>
 <!ELEMENT U.S.StatesandTerritories (state+)>
 <!ELEMENT state EMPTY>
 <!ATTLIST state Name  CDATA #IMPLIED>
@@ -50,33 +60,16 @@
 <!ELEMENT OrganizationAffiliates (OANotes,Firm+,AdditionalNotes)>
 <!ELEMENT OANotes (#PCDATA)>
 <!ELEMENT Firm (Control,FirmAddress,Country,FirmDescription)>
-<!ELEMENT Control (#PCDATA)>
-<!ELEMENT FirmAddress (#PCDATA)>
-<!ELEMENT Country (#PCDATA)>
-<!ELEMENT FirmDescription (#PCDATA)>
-<!ELEMENT  AdditionalNotes (#PCDATA)>
-<!ATTLIST COMPANY  CRD CDATA #REQUIRED>
-<!ATTLIST COMPANY  NAME CDATA #REQUIRED>
-<!ATTLIST FirmName  CRD CDATA #REQUIRED>
-<!ATTLIST FirmName  SEC CDATA #REQUIRED>
-<!ATTLIST Self-RegulatoryOrganization Name  CDATA #IMPLIED>
-<!ATTLIST Self-RegulatoryOrganization Status CDATA #IMPLIED>
-<!ATTLIST Self-RegulatoryOrganization DateEffective  CDATA #IMPLIED>
-<!ATTLIST FederalRegulator Name  CDATA #IMPLIED>
-<!ATTLIST FederalRegulator Status CDATA #IMPLIED>
-<!ATTLIST FederalRegulator DateEffective  CDATA #IMPLIED>
-<!ATTLIST DirectOwnersAndExecutiveOfficers OwnerType (domestic|Foreignentity|Anindividual) "domestic">
-<!ATTLIST DirectOwnersAndExecutiveOfficers DirectsPolicies (Yes|No) "No">
-<!ATTLIST DirectOwnersAndExecutiveOfficers PublicCompany (Yes|No) "No">
-<!ATTLIST SECRegistrationQuestion GovernmentSecuritiesBroker (Yes|No) "No">
-<!ATTLIST SECRegistrationQuestion OnlyGovernmentSecuritiesBroker (Yes|No) "No">
-<!ATTLIST SECRegistrationQuestion CeasedGovernamentSecurityActivties (Yes|No) "No">
 <!ATTLIST Firm ForeignEntity (Yes|No) "No">
 <!ATTLIST Firm SecuritiesActivities (Yes|No) "No">
 <!ATTLIST Firm InvestmentAdvisoryActivities (Yes|No) "No">
 <!ATTLIST Firm Name CDATA #IMPLIED>
 <!ATTLIST Firm EffectiveDate CDATA #IMPLIED>
-
+<!ELEMENT Control (#PCDATA)>
+<!ELEMENT FirmAddress (#PCDATA)>
+<!ELEMENT Country (#PCDATA)>
+<!ELEMENT FirmDescription (#PCDATA)>
+<!ELEMENT  AdditionalNotes (#PCDATA)>
 ]>
 <brockercheckreport>
 <COMPANY CRD ="42578" NAME="LIEBLONG ASSOCIATES, INC">
@@ -103,14 +96,11 @@ LITTLE ROCK, AR  72221
 <BusinessTelephoneNumber>
 501-219-2003
 </BusinessTelephoneNumber>
-<DirectOwnersAndExecutiveOfficers>
+<DirectOwnersAndExecutiveOfficers OwnerType="Individual" DirectsPolicies="Yes" PublicCompany="No" >
 <LegalNameAndCRD>
 LIEBLONG, ALEX RAY 
 839906
 </LegalNameAndCRD>
-<OwnerType>
-Individual
-</OwnerType>
 <Position>
 MANAGING MEMBER, KEY COLONY MANAGEMENT, LLC ("RELYING
 ADVISER")
@@ -121,21 +111,14 @@ ADVISER")
 <PercentageofOwnership>
 75% or more
 </PercentageofOwnership>
-<DirectsPolicies>
-Yes
-</DirectsPolicies>
-<PublicCompany>
-No
-</PublicCompany>
+
 </DirectOwnersAndExecutiveOfficers>
-<DirectOwnersAndExecutiveOfficers>
+<DirectOwnersAndExecutiveOfficers OwnerType="Individual" DirectsPolicies="No" PublicCompany="No">
 <LegalNameAndCRD>
 LEHMAN, RALPH CLAYTON II
 1333730
 </LegalNameAndCRD>
-<OwnerType>
-Individual
-</OwnerType>
+
 <Position>
 OPTIONS PRINCIPAL, LIEBLONG ASSOCIATES, INC.
 </Position>
@@ -145,22 +128,14 @@ OPTIONS PRINCIPAL, LIEBLONG ASSOCIATES, INC.
 <PercentageofOwnership>
 Less than 5%
 </PercentageofOwnership>
-<DirectsPolicies>
-No
-</DirectsPolicies>
-<PublicCompany>
-No
-</PublicCompany>
+
 </DirectOwnersAndExecutiveOfficers>
 
-<DirectOwnersAndExecutiveOfficers>
+<DirectOwnersAndExecutiveOfficers OwnerType="Individual" DirectsPolicies="No" PublicCompany="No">
 <LegalNameAndCRD>
 LIEBLONG, JASON RAY 
 2366644
 </LegalNameAndCRD>
-<OwnerType>
-Individual
-</OwnerType>
 <Position>
 VICE PRESIDENT, LIEBLONG  ASSOCIATES, INC.
 </Position>
@@ -170,22 +145,14 @@ VICE PRESIDENT, LIEBLONG  ASSOCIATES, INC.
 <PercentageofOwnership>
 Less than 5%
 </PercentageofOwnership>
-<DirectsPolicies>
-No
-</DirectsPolicies>
-<PublicCompany>
-No
-</PublicCompany>
+
 </DirectOwnersAndExecutiveOfficers>
 
-<DirectOwnersAndExecutiveOfficers>
+<DirectOwnersAndExecutiveOfficers OwnerType="Individual" DirectsPolicies="No" PublicCompany="No">
 <LegalNameAndCRD>
 SPANN, PAUL ALLISON
 722781
 </LegalNameAndCRD>
-<OwnerType>
-Individual
-</OwnerType>
 <Position>
 SR. VICE PRESIDENT/MUNI PRINCIPAL, LIEBLONG  ASSOCIATES, INC
 </Position>
@@ -195,22 +162,14 @@ SR. VICE PRESIDENT/MUNI PRINCIPAL, LIEBLONG  ASSOCIATES, INC
 <PercentageofOwnership>
 Less than 5%
 </PercentageofOwnership>
-<DirectsPolicies>
-No
-</DirectsPolicies>
-<PublicCompany>
-No
-</PublicCompany>
 </DirectOwnersAndExecutiveOfficers>
 
-<DirectOwnersAndExecutiveOfficers>
+<DirectOwnersAndExecutiveOfficers OwnerType="Individual" DirectsPolicies="No" PublicCompany="No"> 
 <LegalNameAndCRD>
 WILLIAMS, MARY ELLEN
 4529272
 </LegalNameAndCRD>
-<OwnerType>
-Individual
-</OwnerType>
+
 <Position>
 VP/CFO/FINOP/SEC/TREAS/CCO, LIEBLONG  ASSOCIATES, INC.
 </Position>
@@ -220,12 +179,7 @@ VP/CFO/FINOP/SEC/TREAS/CCO, LIEBLONG  ASSOCIATES, INC.
 <PercentageofOwnership>
 Less than 5%
 </PercentageofOwnership>
-<DirectsPolicies>
-No
-</DirectsPolicies>
-<PublicCompany>
-No
-</PublicCompany>
+
 </DirectOwnersAndExecutiveOfficers>
 <IndirectOwners>
 No information reported.
@@ -244,21 +198,8 @@ organizations (SROs), and U.S. states and territories) with which the brokerage 
 licensed, the date the license became effective, and certain information about the firm's SEC registration.
 This firm is currently registered with the SEC, 1 SRO and 26 U.S. states and territories
 </Notes>
-<FederalRegulator Name="" Status="Approved" DateEffective="06/16/1997"/>
-<SECRegistrationQuestions>
-<broker-dealer>
-Yes
-</broker-dealer>
-<GovernmentSecuritiesBroker>
-Yes
-</GovernmentSecuritiesBroker>
-<OnlyGovernmentSecuritiesBroker>
-No
-</OnlyGovernmentSecuritiesBroker>
-<CeasedGovernamentSecurityActivties>
-No
-</CeasedGovernamentSecurityActivties>
-</SECRegistrationQuestions>
+<FederalRegulator Name="SEC" Status="Approved" DateEffective="06/16/1997"/>
+<SECRegistrationQuestions broker-dealer="Yes" GovernmentSecuritiesBroker="Yes" OnlyGovernmentSecuritiesBroker="No"  CeasedGovernamentSecurityActivties="No"/>
 
 <Self-RegulatoryOrganization Name="FINRA" Status="Approved" DateEffective="06/16/1997" />
 <U.S.StatesandTerritories>
