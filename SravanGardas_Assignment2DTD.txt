@@ -5,7 +5,7 @@
 <!--Many Companies could be in the BrockerCheckReport and all the companies would have the same schema -->
 <!--A Company has three childs FirmProfile, FirmHistory ,FirmOperations -->
 <!ELEMENT COMPANY (FirmProfile,FirmHistory,FirmOperations)>
-<!--Company has CRD the unique Number to the company and the Name as Mandatory attributes.-->
+<!--Company has CRD "Central Registration Depository" the unique Number to the company and the Name as Mandatory attributes.-->
 <!ATTLIST COMPANY  CRD CDATA #REQUIRED>
 <!ATTLIST COMPANY  NAME CDATA #REQUIRED>
 <!ELEMENT FirmProfile (notes,FirmName,MainOfficeLocation,RegulatedBy,MailingAddress,BusinessTelephoneNumber,DirectOwnersAndExecutiveOfficers+,IndirectOwners*)>
@@ -121,11 +121,11 @@
 <!ATTLIST Firm InvestmentAdvisoryActivities (Yes|No) "No">
 <!-- The attribute InvestmentAdvisoryActivities  specify if the firm does advisory activites or not with Yes/No values. The default being No -->
 <!ATTLIST Firm Name CDATA #IMPLIED>
-<!-- The attribute Firm Name specify the name of the Firm. -->
+<!-- The attribute Firm Name specify the name of the Firm. This is an optional attribute, so i have chosen #IMPLIED -->
 <!ATTLIST Firm EffectiveDate CDATA #IMPLIED>
-<!-- The attribute EffectiveDate specify effective date of the firm -->
+<!-- The attribute EffectiveDate specify effective date of the firm.This is an  optional attribute, so i have chosen #IMPLIED  -->
 <!ELEMENT Control (#PCDATA)>
-<!-- The Element control specify the controling details of the firm -->
+<!-- The Element control specify the controling details of the firm. -->
 <!ELEMENT FirmAddress (#PCDATA)>
 <!-- The Element FirmAddress gives the address of the firm -->
 <!ELEMENT Country (#PCDATA)>
