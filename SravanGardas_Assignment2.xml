@@ -1,4 +1,3 @@
-<!-- BrockerCheckReport is the Root -->
 <!DOCTYPE brockercheckreport[
 <!ELEMENT brockercheckreport (COMPANY+)>
 <!--A company is the child of BrokerCheckReport, all the reports will be at this level. -->
