@@ -9,7 +9,7 @@ from nltk import word_tokenize
 
 
 #reviews=pd.read_csv("C:/reviews.csv")[0:2500]
-reviews=pd.read_csv("C:/reviews.csv")
+reviews=pd.read_csv("C:/reviews.csv") #Please provide the reviews file here
 
 def get_language_likelihood(input_text):
     """Return a dictionary of languages and their likelihood of being the 
@@ -33,13 +33,14 @@ def get_language(input_text):
     likelihoods = get_language_likelihood(input_text)
     return sorted(likelihoods, key=likelihoods.get, reverse=True)[0]
 
+#Data frame to get the language of the comments
 s=pd.DataFrame()
 s['commentexist']=pd.notnull(reviews['comments'])
 s['language']=[get_language(str(r)) for r in reviews['comments']]
 s['listing']=reviews['listing_id']
 s['comments']=reviews['comments']
 
-s.to_csv("c:/s_langclassfied.csv", sep=',', encoding='utf-8')
+s.to_csv("c:/OutPut-Language_Classfied_Reviews.csv", sep=',', encoding='utf-8') #File where you want the language claissfied reviews to be stored
 s_filter=s[(s.commentexist==True)&(s.language=='english')]
 sid = SentimentIntensityAnalyzer()
 scored_reviews = pd.DataFrame()
@@ -55,12 +56,12 @@ rev_group_f['id']=rev_group.keys()
 rev_group_f['sentiment_scores']=rev_group.values
 rev_group_f['number of reviews']=rev_group_num.values
 
-listing=pd.read_csv("c:/listings.csv")
+listing=pd.read_csv("c:/listings.csv") #Please provide the listing  file here
 list_few=listing[['id','review_scores_rating','review_scores_accuracy','review_scores_cleanliness','review_scores_checkin','review_scores_communication','review_scores_location','review_scores_value','price','neighbourhood_cleansed']]
 mergeddf=pd.merge(rev_group_f,list_few)
 print(pd.merge(rev_group_f,list_few))
-mergeddf.to_csv('C:/output-merged.csv', sep=',')
-
+mergeddf.to_csv('C:/Output-NormalizedSentiment-Listing.csv', sep=',')
+#output of the finalsentimentfile merged with scores
 
 bigram_measures = BigramAssocMeasures()
 #need a pandas data frame#exceeding 200 iam getting error..
@@ -91,6 +92,5 @@ review_bigrams = review_words_f.map(bigramify)
 review_bigrams_pd=pd.DataFrame()
 review_bigrams_pd['id']=review_bigrams.keys()
 review_bigrams_pd['bigrams']=review_bigrams.values
-review_bigrams_pd.to_csv('C:/output-bigrams.csv', sep=',')
-print( type(review_bigrams))
-print(review_bigrams)
+review_bigrams_pd.to_csv('C:/Output-Bigrams-Listing.csv', sep=',')
+#output of the Listing file merged with bigrams
